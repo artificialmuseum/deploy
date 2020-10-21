@@ -36,7 +36,7 @@ printf " - \033[0;32mdone\033[0m\n\n"
 
 printf "\033[1;33mcloning page:\033[0m static.thesystem.at"
 
-DIR="/home/grundstein/repositories/static2.thesystem.at"
+DIR="/home/grundstein/repositories/static.wiznwit.com"
 
 if [ ! -d "$DIR" ] ; then
   git clone git://github.com/thesystemcollective/static.thesystem.at $DIR >> /var/log/grundstein/install.log 2>&1
@@ -56,7 +56,7 @@ npm install >> /var/log/grundstein/install.log 2>&1
 # copy docs directory, if it exists
 if [ -d "$DIR/docs" ]; then
   mkdir -p /var/www/html/
-  cp -r ./docs /var/www/html/static2.thesystem.at
+  cp -r ./docs /var/www/html/static.wiznwit.com
 fi
 
 printf " - \033[0;32mdone\033[0m.\n\n"
@@ -73,9 +73,9 @@ if [ ! -f "$DIR/docs" ]; then
   touch $PROXY_FILE
 fi
 
-HAS_PROXY=grep -qxF 'static2.thesystem.at' $PROXY_FILE
+HAS_PROXY=grep -qxF 'static.wiznwit.com' $PROXY_FILE
 if [ $? != 0 ]; then
-  echo 'static2.thesystem.at' >> $PROXY_FILE
+  echo 'static.wiznwit.com' >> $PROXY_FILE
 fi
 
 printf " - \033[0;32mdone\033[0m\n\n"

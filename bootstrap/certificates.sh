@@ -28,9 +28,9 @@ if test -f "/.secrets/digitalocean.ini"; then
     --dns-digitalocean-credentials /.secrets/digitalocean.ini \
     --dns-digitalocean-propagation-seconds 10 \
     --agree-tos \
-    --cert-name thesystem.at \
+    --cert-name wiznwit.com \
     --email grundstein@jaeh.at \
-    -d static2.thesystem.at,glb2.thesystem.at,maps2.thesystem.at
+    -d static2.wiznwit.com,glb2.wiznwit.com,maps2.wiznwit.com,wiznwit.com
     # -d *.thesystem.at,thesystem.at
 
   printf " - \033[0;32mdone\033[0m\n\n"
