@@ -45,10 +45,12 @@ if test -f "/.secrets/digitalocean.ini"; then
 
   touch /home/grundstein/refresh-certificates
 
-  echo "certbot renew && service gss restart" >> /home/grundstein/refresh-certificates
+  printf '#!/usr/bin/env bash\n\n' >> /home/grundstein/refresh-certificates
+  printf 'certbot renew\n\n' >> /home/grundstein/refresh-certificates
+  printf 'service gss restart\n\n' >> /home/grundstein/refresh-certificates
 
   CRON_FILE="/var/spool/cron/root"  
-  CRON_JOB="@daily /usr/bin/env bash /home/grundstein/refresh-certificates"
+  CRON_JOB="@daily /home/grundstein/refresh-certificates"
 
   if [ ! -f $CRON_FILE ]; then
     printf "\033[1;33mcreate $CRON_FILE\033[0m"
