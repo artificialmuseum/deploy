@@ -25,7 +25,6 @@ PAGE_ARRAY=(
   ("glb.wiznwit.com" "$GIT_USER/glb.thesystem.at")
 )
 
-# Loop and print it.  Using offset and length to extract values
 COUNT=${#PAGE_ARRAY[@]}
 for ((i=0; i<$COUNT; i++))
 do
