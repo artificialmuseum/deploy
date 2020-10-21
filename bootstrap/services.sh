@@ -2,6 +2,8 @@
 
 set -euf -o pipefail
 
+export DEBIAN_FRONTEND=noninteractive
+
 printf "\033[1;33mgrundstein\033[0m service setup.\n\n"
 
 
@@ -32,9 +34,9 @@ cd /home/grundstein/services/gps
 
 rm -rf node_modules package-lock.json >> /var/log/grundstein/install.log 2>&1
 
-npm install >> /var/log/grundstein/install.log 2>&1
+npm install --production >> /var/log/grundstein/install.log 2>&1
 
-npm test >> /var/log/grundstein/install.log 2>&1
+# npm test >> /var/log/grundstein/install.log 2>&1
 
 npm link >> /var/log/grundstein/install.log 2>&1
 
@@ -104,7 +106,7 @@ printf " - \033[0;32mdone\033[0m\n\n"
 ############################################################
 
 
-printf "\033[1;33m@grundstein/gps\033[0m setup\n\n"
+printf "\033[1;33m@grundstein/gps\033[0m setup"
 
 cp /grundsteinlegung/src/systemd/gps.service /etc/systemd/system/
 
@@ -118,7 +120,7 @@ printf " - \033[0;32mdone\033[0m\n\n"
 ############################################################
 
 
-printf "\033[1;33m@grundstein/grs\033[0m setup\n\n"
+printf "\033[1;33m@grundstein/grs\033[0m setup"
 
 cp /grundsteinlegung/src/systemd/grs.service /etc/systemd/system/
 
@@ -132,7 +134,7 @@ printf " - \033[0;32mdone\033[0m\n\n"
 ############################################################
 
 
-printf "\033[1;33m@grundstein/gss\033[0m setup\n\n"
+printf "\033[1;33m@grundstein/gss\033[0m setup"
 
 cp /grundsteinlegung/src/systemd/gss.service /etc/systemd/system/
 
