@@ -4,20 +4,7 @@ set -euf -o pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 
-printf "Starting grundstein install"
-
-printf "\033[1;33mtouch\033[0m /grundstein.lock"
-
-if test -f "/grundstein.lock"; then
-  printf "/grundstein.lock exists.\n"
-  printf "there is an installation running or a past installation failed.\n"
-  printf "to force reinstallation, add the --force flag to the grundstein command.\n"
-  exit 1
-fi
-
-touch /grundstein.lock
-
-printf " - \033[0;32mdone\033[0m\n\n"
+printf "\033[1;33mgrundstein\033[0m init.\n\n"
 
 
 ############################################################
@@ -114,18 +101,27 @@ printf " - \033[0;32mdone\033[0m\n\n"
 ############################################################
 
 
-printf "\033[1;33minstall\033[0m dependencies"
+printf "\033[1;33mapt install\033[0m"
 
 # curl needed for nvm
 # makepasswd needed for user generation below
 # nano should later be removed from the list, convenience install for dev.
 
-apt-get -qq -y install git makepasswd curl software-properties-common nano >> /var/log/grundstein/install.log 2>&1
+apt-get -qq -y install \
+git \
+makepasswd \
+curl \
+software-properties-common \
+nano \
+>> /var/log/grundstein/install.log 2>&1
 
 printf " - \033[0;32mdone\033[0m\n\n"
 
 
 ############################################################
+
+
+printf "\033[1;33madd user\033[0m"
 
 # add user if it does not exist.
 # one should be fine for now.
@@ -175,9 +171,4 @@ fi
 
 ############################################################
 
-
-printf "remove /grundstein/lock"
-
-rm /grundstein.lock
-
-printf " - \033[0;32mdone\033[0m\n\n"
+printf "\033[1;33minit.sh\033[0m - \033[0;32mdone\033[0m\n\n"
