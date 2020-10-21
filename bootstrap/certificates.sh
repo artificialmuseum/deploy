@@ -55,6 +55,7 @@ if test -f "/.secrets/digitalocean.ini"; then
 
   REFRESH_FILE=/home/grundstein/refresh-certificates
 
+  rm -f $REFRESH_FILE
   touch $REFRESH_FILE
 
   printf '#!/usr/bin/env bash\n\n' >> $REFRESH_FILE
