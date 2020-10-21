@@ -43,14 +43,17 @@ if test -f "/.secrets/digitalocean.ini"; then
 
   printf "\033[1;33mcertbot\033[0m - add cronjob"
 
-  touch /home/grundstein/refresh-certificates
+  REFRESH_FILE=/home/grundstein/refresh-certificates
 
-  printf '#!/usr/bin/env bash\n\n' >> /home/grundstein/refresh-certificates
-  printf 'certbot renew\n\n' >> /home/grundstein/refresh-certificates
-  printf 'service gss restart\n\n' >> /home/grundstein/refresh-certificates
+  touch $REFRESH_FILE
 
-  CRON_FILE="/var/spool/cron/root"  
-  CRON_JOB="@daily /home/grundstein/refresh-certificates"
+  printf '#!/usr/bin/env bash\n\n' >> $REFRESH_FILE
+  printf 'certbot renew\n\n' >> $REFRESH_FILE
+  printf 'service gss restart\n\n' >> $REFRESH_FILE
+
+  chmod +x $REFRESH_FILE
+
+  CRON_FILE="/var/spool/cron/root"
 
   if [ ! -f $CRON_FILE ]; then
     printf "\033[1;33mcreate $CRON_FILE\033[0m"
@@ -61,6 +64,7 @@ if test -f "/.secrets/digitalocean.ini"; then
     printf "\033[0;32mdone\033[0m\n\n"
   fi
 
+  CRON_JOB="@daily $REFRESH_FILE"
   grep -qxF $CRON_JOB $CRON_FILE
   if [ $? != 0 ]; then
     printf "\033[1;33mcreate $CRON_FILE\033[0m"
