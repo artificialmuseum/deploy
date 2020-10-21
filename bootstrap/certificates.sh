@@ -2,6 +2,8 @@
 
 set -euf -o pipefail
 
+export DEBIAN_FRONTEND=noninteractive
+
 printf "\033[1;33mletsencrypt\033[0m setup.\n\n"
 
 ############################################################
@@ -33,7 +35,7 @@ if test -f "/.secrets/digitalocean.ini"; then
     --agree-tos \
     --cert-name wiznwit.com \
     --email grundstein@jaeh.at \
-    -d static2.wiznwit.com,glb2.wiznwit.com,maps2.wiznwit.com,wiznwit.com
+    -d *.wiznwit.com,wiznwit.com
     # -d *.thesystem.at,thesystem.at
 
   printf "certificate generation - \033[0;32mdone\033[0m\n\n"
