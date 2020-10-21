@@ -2,6 +2,8 @@
 
 set -euf -o pipefail
 
+export DEBIAN_FRONTEND=noninteractive
+
 printf "\033[1;33miptables\033[0m setup\n\n"
 
 
