@@ -50,7 +50,7 @@ printf " - \033[0;32mdone\033[0m\n\n"
 ############################################################
 
 
-printf "\033[1;33m open ports\033[0m"
+printf "\033[1;33mopen ports\033[0m"
 
 # ports to open
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
