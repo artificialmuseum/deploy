@@ -19,133 +19,52 @@ printf " - \033[0;32mdone\033[0m\n\n"
 
 ############################################################
 
+GIT_USER=grundstein
 
-printf "\033[1;33m@grundstein/gps\033[0m install"
+SERVICE_ARRAY=(
+  "gps"
+  "grs"
+  "gss"
+)
 
-if [ ! -d "/home/grundstein/services/gps" ] ; then
-  git clone --depth 1 git://github.com/grundstein/gps /home/grundstein/services/gps >> /var/log/grundstein/install.log 2>&1
-else
-  cd "/home/grundstein/services/gps"
-  git pull origin master >> /var/log/grundstein/install.log 2>&1
-fi
+for SERVICE_NAME in "${SERVICE_ARRAY[@]}" ;
+do
+  printf "\033[1;33m@$GIT_USER/$SERVICE_NAME\033[0m install"
 
+  if [ ! -d "/home/grundstein/services/$SERVICE_NAME" ] ; then
+    git clone --depth 1 git://github.com/$GIT_USER/$SERVICE_NAME /home/grundstein/services/$SERVICE_NAME >> /var/log/grundstein/install.log 2>&1
+  else
+    cd "/home/grundstein/services/$SERVICE_NAME"
+    git pull origin master >> /var/log/grundstein/install.log 2>&1
+  fi
 
-cd /home/grundstein/services/gps
+  cd /home/grundstein/services/$SERVICE_NAME
 
-rm -rf node_modules package-lock.json >> /var/log/grundstein/install.log 2>&1
+  rm -rf node_modules package-lock.json >> /var/log/grundstein/install.log 2>&1
 
-npm install --production >> /var/log/grundstein/install.log 2>&1
+  npm install --production >> /var/log/grundstein/install.log 2>&1
 
-# npm test >> /var/log/grundstein/install.log 2>&1
+  # npm test >> /var/log/grundstein/install.log 2>&1
 
-npm link >> /var/log/grundstein/install.log 2>&1
+  npm link >> /var/log/grundstein/install.log 2>&1
 
-cd /
+  cd /
 
-printf " - \033[0;32mdone\033[0m\n\n"
+  printf " - \033[0;32mdone\033[0m\n\n"
 
 
-############################################################
+  ############################################################
 
 
-printf "\033[1;33m@grundstein/grs\033[0m install"
+  printf "\033[1;33m@$GIT_USER/$SERVICE_NAME\033[0m setup"
 
+  cp /grundsteinlegung/src/systemd/$SERVICE_NAME.service /etc/systemd/system/
 
-if [ ! -d "/home/grundstein/services/grs" ] ; then
-  git clone --depth 1 git://github.com/grundstein/grs /home/grundstein/services/grs >> /var/log/grundstein/install.log 2>&1
-else
-  cd "/home/grundstein/services/grs"
-  git pull origin master >> /var/log/grundstein/install.log 2>&1
-fi
+  systemctl enable $SERVICE_NAME
 
+  systemctl restart $SERVICE_NAME
 
-cd /home/grundstein/services/grs
-
-rm -rf node_modules package-lock.json >> /var/log/grundstein/install.log 2>&1
-
-npm install >> /var/log/grundstein/install.log 2>&1
-
-npm test >> /var/log/grundstein/install.log 2>&1
-
-npm link >> /var/log/grundstein/install.log 2>&1
-
-cd /
-
-printf " - \033[0;32mdone\033[0m\n\n"
-
-
-############################################################
-
-
-printf "\033[1;33m@grundstein/gss\033[0m install"
-
-
-if [ ! -d "/home/grundstein/services/gss" ] ; then
-  git clone --depth 1 git://github.com/grundstein/gss /home/grundstein/services/gss >> /var/log/grundstein/install.log 2>&1
-else
-  cd "/home/grundstein/services/gss"
-  git pull origin master >> /var/log/grundstein/install.log 2>&1
-fi
-
-
-cd /home/grundstein/services/gss
-
-rm -rf node_modules package-lock.json >> /var/log/grundstein/install.log 2>&1
-
-npm install >> /var/log/grundstein/install.log 2>&1
-
-npm test >> /var/log/grundstein/install.log 2>&1
-
-npm link >> /var/log/grundstein/install.log 2>&1
-
-cd /
-
-printf " - \033[0;32mdone\033[0m\n\n"
-
-
-############################################################
-
-
-printf "\033[1;33m@grundstein/gps\033[0m setup"
-
-cp /grundsteinlegung/src/systemd/gps.service /etc/systemd/system/
-
-systemctl enable gps
-
-systemctl restart gps
-
-printf " - \033[0;32mdone\033[0m\n\n"
-
-
-############################################################
-
-
-printf "\033[1;33m@grundstein/grs\033[0m setup"
-
-cp /grundsteinlegung/src/systemd/grs.service /etc/systemd/system/
-
-systemctl enable grs
-
-systemctl restart grs
-
-printf " - \033[0;32mdone\033[0m\n\n"
-
-
-############################################################
-
-
-printf "\033[1;33m@grundstein/gss\033[0m setup"
-
-cp /grundsteinlegung/src/systemd/gss.service /etc/systemd/system/
-
-systemctl enable gss
-
-systemctl restart gss
-
-printf " - \033[0;32mdone\033[0m\n\n"
-
-
-############################################################
-
+  printf " - \033[0;32mdone\033[0m\n\n"
+done
 
 printf "\033[1;33mservices.sh\033[0m - \033[0;32mdone\033[0m\n\n"
