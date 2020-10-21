@@ -2,24 +2,7 @@
 
 set -euf -o pipefail
 
-printf "\033[1;33mgrundstein\033[0m service setup.\n"
-
-
-############################################################
-
-
-printf "\033[1;33mtouch\033[0m /grundstein.lock"
-
-if test -f "/grundstein.lock"; then
-  printf "/grundstein.lock exists.\n"
-  printf "there is an installation running or a past installation failed.\n"
-  printf "to force reinstallation, add the --force flag to the grundstein command.\n"
-  exit 1
-fi
-
-touch /grundstein.lock
-
-printf " - \033[0;32mdone\033[0m\n\n"
+printf "\033[1;33mgrundstein\033[0m service setup.\n\n"
 
 
 ############################################################
@@ -121,7 +104,7 @@ printf " - \033[0;32mdone\033[0m\n\n"
 ############################################################
 
 
-printf "\033[1;33m@grundstein/gps\033[0m setup"
+printf "\033[1;33m@grundstein/gps\033[0m setup\n\n"
 
 cp /grundsteinlegung/src/systemd/gps.service /etc/systemd/system/
 
@@ -135,7 +118,7 @@ printf " - \033[0;32mdone\033[0m\n\n"
 ############################################################
 
 
-printf "\033[1;33m@grundstein/grs\033[0m setup"
+printf "\033[1;33m@grundstein/grs\033[0m setup\n\n"
 
 cp /grundsteinlegung/src/systemd/grs.service /etc/systemd/system/
 
@@ -149,7 +132,7 @@ printf " - \033[0;32mdone\033[0m\n\n"
 ############################################################
 
 
-printf "\033[1;33m@grundstein/gss\033[0m setup"
+printf "\033[1;33m@grundstein/gss\033[0m setup\n\n"
 
 cp /grundsteinlegung/src/systemd/gss.service /etc/systemd/system/
 
@@ -163,14 +146,4 @@ printf " - \033[0;32mdone\033[0m\n\n"
 ############################################################
 
 
-printf "\033[1;33mremoving /grundstein.lock\033[0m"
-
-rm -f /grundstein.lock
-
-printf " - \033[0;32mdone\033[0m\n\n"
-
-echo "\033[1;33mGRUNDSTEIN\033[0m - install finished." >> /var/log/grundstein/install.log
-
-printf "INSTALL FINISHED.\n"
-
-############################################################
+printf "\033[1;33mservices.sh\033[0m - \033[0;32mdone\033[0m\n\n"
