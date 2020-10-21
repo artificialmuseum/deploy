@@ -2,11 +2,14 @@
 
 set -euf -o pipefail
 
-printf "GRUNDSTEIN - create letsencrypt certificates.\n"
+printf "\033[1;33mletsencrypt\033[0m setup.\n\n"
 
 ############################################################
 
 if test -f "/.secrets/digitalocean.ini"; then
+
+  printf "\033[1;33mcertbot\033[0m install"
+
   # actually install certbot
   apt-get -y install \
   python \
@@ -20,7 +23,7 @@ if test -f "/.secrets/digitalocean.ini"; then
   ############################################################
 
 
-  printf "\033[1;33mcertbot\033[0m - generate certificates"
+  printf "\033[1;33mcertbot\033[0m - generate certificates\n"
 
   certbot certonly \
     -n \
@@ -33,15 +36,22 @@ if test -f "/.secrets/digitalocean.ini"; then
     -d static2.wiznwit.com,glb2.wiznwit.com,maps2.wiznwit.com,wiznwit.com
     # -d *.thesystem.at,thesystem.at
 
-  printf " - \033[0;32mdone\033[0m\n\n"
+  printf "certificate generation - \033[0;32mdone\033[0m\n\n"
+
+  ############################################################
+
+
+  printf "\033[1;33mchown\033[0m certificates"
 
   chown grundstein:root -R /etc/letsencrypt/archive /etc/letsencrypt/live
+
+  printf " - \033[0;32mdone\033[0m\n\n"
 
 
   ############################################################
 
 
-  printf "\033[1;33mcertbot\033[0m - add cronjob"
+  printf "\033[1;33mcertbot\033[0m - create cronjob bin file"
 
   REFRESH_FILE=/home/grundstein/refresh-certificates
 
@@ -53,26 +63,46 @@ if test -f "/.secrets/digitalocean.ini"; then
 
   chmod +x $REFRESH_FILE
 
-  CRON_FILE="/var/spool/cron/root"
+  printf " - \033[0;32mdone\033[0m\n\n"
+  
+
+  ############################################################
+
+
+  CRON_FILE="/home/grundstein/cronjobs"
 
   if [ ! -f $CRON_FILE ]; then
     printf "\033[1;33mcreate $CRON_FILE\033[0m"
  
     touch $CRON_FILE
-    /usr/bin/crontab $CRON_FILE
   
-    printf "\033[0;32mdone\033[0m\n\n"
+    printf " - \033[0;32mdone\033[0m\n\n"
   fi
+  
 
-  CRON_JOB="@daily $REFRESH_FILE"
-  grep -qxF $CRON_JOB $CRON_FILE
-  if [ $? != 0 ]; then
-    printf "\033[1;33mcreate $CRON_FILE\033[0m"
+  ############################################################
 
-    /bin/echo $CRON_JOB >> $CRON_FILE
 
-    printf "\033[0;32mdone\033[0m\n\n"
-  fi
+  printf "\033[1;33mwrite cronjobs to tmp file\033[0m"
+ 
+  crontab -l > $CRON_FILE
+  
+  printf " - \033[0;32mdone\033[0m\n\n"
+
+
+  ############################################################
+
+  CRON_JOB="0 0 * * * $REFRESH_FILE"
+  
+  printf "\033[1;33mpush cronjob to cronfile \033[0m\n"
+
+  grep -qF -- "$CRON_JOB" "$CRON_FILE" || echo "$CRON_JOB" >> "$CRON_FILE"
+
+  # install new cron file
+  crontab $CRON_FILE
+
+  # remove tmp cron file
+  rm $CRON_FILE
 
   printf "\033[0;32mdone adding cronjob\033[0m\n\n"
 
