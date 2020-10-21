@@ -2,7 +2,8 @@
 
 set -euf -o pipefail
 
-printf "GRUNDSTEIN - pushing to production.\n"
+
+printf "\033[1;33mGRUNDSTEIN\033[0m - pushing to production.\n\n"
 
 DROPLET_IP=159.89.20.30
 
