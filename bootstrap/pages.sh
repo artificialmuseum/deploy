@@ -2,6 +2,8 @@
 
 set -euf -o pipefail
 
+export DEBIAN_FRONTEND=noninteractive
+
 printf "\033[1;33mgrundstein\033[0m static page setup.\n\n"
 
 ############################################################
@@ -19,7 +21,7 @@ printf " - \033[0;32mdone\033[0m\n\n"
 
 printf "\033[1;33mcloning page:\033[0m static.thesystem.at"
 
-PAGE_HOST='$PAGE_HOST'
+PAGE_HOST='static.wiznwit.com'
 DIR="/home/grundstein/repositories/$PAGE_HOST"
 
 if [ ! -d "$DIR" ] ; then
@@ -35,7 +37,7 @@ cd "$DIR"
 rm -rf node_modules package-lock.json
 
 # install dependencies
-npm install >> /var/log/grundstein/install.log 2>&1
+npm install --production >> /var/log/grundstein/install.log 2>&1
 
 # copy docs directory, if it exists
 if [ -d "$DIR/docs" ]; then
