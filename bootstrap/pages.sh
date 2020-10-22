@@ -51,51 +51,38 @@ do
 
   printf " - \033[0;32mdone\033[0m.\n\n"
 
-
-  ############################################################
-
-
-  printf "\033[1;33mnpm install\033[0m"
-
-  cd "$DIR"
-
-  npm install --production >> /var/log/grundstein/install.log 2>&1
-
-  printf " - \033[0;32mdone\033[0m.\n\n"
-
   
   ############################################################
 
 
-  printf "\033[1;33mcopy $PAGE_HOST\033[0m to /var/www/html"
+  printf "\033[1;33msymlink $PAGE_HOST\033[0m to /var/www/html"
 
   if [ -d "$DIR/docs" ]; then
     mkdir -p /var/www/html/
-    cp -r $DIR/docs /var/www/html/$PAGE_HOST
+    ln -sf $DIR/docs /var/www/html/$PAGE_HOST
   fi
 
   printf " - \033[0;32mdone\033[0m.\n\n"
 
+
+  ############################################################
+
+
+  printf "\033[1;33madding $PAGE_HOST to proxy list\033[0m"
+
+  PROXY_FILE=/home/grundstein/proxies
+
+  if [ ! -f "$PROXY_FILE" ]; then
+    touch $PROXY_FILE
+  fi
+
+  grep -qxF $PAGE_HOST $PROXY_FILE || echo "$PAGE_HOST" >> $PROXY_FILE
+
+  grep -qxF $PAGE_HOST $PROXY_FILE || printf "add $PAGE_HOST to $PROXY_FILE"
+
+  printf " - \033[0;32mdone\033[0m\n\n"
+
 done
-
-
-############################################################
-
-
-############################################################
-
-
-printf "\033[1;33madding host to proxy list\033[0m"
-
-PROXY_FILE=/home/grundstein/proxies
-
-if [ ! -f "$DIR/docs" ]; then
-  touch $PROXY_FILE
-fi
-
-grep -qxF "$PAGE_HOST" $PROXY_FILE || echo "$PAGE_HOST" >> $PROXY_FILE
-
-printf " - \033[0;32mdone\033[0m\n\n"
 
 
 ############################################################
