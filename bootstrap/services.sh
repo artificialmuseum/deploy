@@ -40,11 +40,7 @@ do
 
   cd /home/grundstein/services/$SERVICE_NAME
 
-  rm -rf node_modules package-lock.json >> /var/log/grundstein/install.log 2>&1
-
   npm install --production >> /var/log/grundstein/install.log 2>&1
-
-  # npm test >> /var/log/grundstein/install.log 2>&1
 
   npm link >> /var/log/grundstein/install.log 2>&1
 
