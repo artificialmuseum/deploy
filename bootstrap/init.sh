@@ -159,7 +159,7 @@ printf "\033[1;33mnodejs\033[0m"
 command -v node >/dev/null 2>&1 && export NODE_VERSION=$(node --version) || export NODE_VERSION="0"
 
 if (test "$NODE_VERSION" != "v13.*") then
-  printf " - install - "
+  printf " - install"
 
   /usr/bin/env bash /grundsteinlegung/bash/node.sh >> /var/log/grundstein/install.log 2>&1
 
