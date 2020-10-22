@@ -20,9 +20,16 @@ printf " - \033[0;32mdone\033[0m\n\n"
 
 GIT_USER=thesystemcollective
 
+PAGE_STATIC=("static.wiznwit.com" "$GIT_USER/static.thesystem.at")
+PAGE_GLB=("glb.wiznwit.com" "$GIT_USER/glb.thesystem.at")
+PAGE_MAP=("map.wiznwit.com" "$GIT_USER/map.thesystem.at")
+PAGE_ROOT=("wiznwit.com" "$GIT_USER/demo.thesystem.at")
+
 PAGE_ARRAY=(
-  ("static.wiznwit.com" "$GIT_USER/static.thesystem.at")
-  ("glb.wiznwit.com" "$GIT_USER/glb.thesystem.at")
+  PAGE_STATIC[@]
+  PAGE_GLB[@]
+  PAGE_MAP[@]
+  PAGE_ROOT[@]
 )
 
 COUNT=${#PAGE_ARRAY[@]}
@@ -42,21 +49,33 @@ do
     git pull origin master >> /var/log/grundstein/install.log 2>&1
   fi
 
+  printf " - \033[0;32mdone\033[0m.\n\n"
+
+
+  ############################################################
+
+
+  printf "\033[1;33mnpm install\033[0m"
+
   cd "$DIR"
 
-  # force update dependencies
-  rm -rf node_modules package-lock.json
-
-  # install dependencies
   npm install --production >> /var/log/grundstein/install.log 2>&1
 
-  # copy docs directory, if it exists
+  printf " - \033[0;32mdone\033[0m.\n\n"
+
+  
+  ############################################################
+
+
+  printf "\033[1;33mcopy $PAGE_HOST\033[0m to /var/www/html"
+
   if [ -d "$DIR/docs" ]; then
     mkdir -p /var/www/html/
-    cp -r ./docs /var/www/html/$PAGE_HOST
+    cp -r $DIR/docs /var/www/html/$PAGE_HOST
   fi
 
   printf " - \033[0;32mdone\033[0m.\n\n"
+
 done
 
 
