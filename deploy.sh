@@ -5,7 +5,7 @@ set -euf -o pipefail
 
 printf "\033[1;33mGRUNDSTEIN\033[0m - pushing to production.\n\n"
 
-DROPLET_IP=159.89.20.30
+DROPLET_IP=157.245.23.135
 
 if test -f ".secrets/digitalocean.ini"; then
   ssh root@$DROPLET_IP 'mkdir -p /.secrets'
@@ -15,6 +15,7 @@ fi
 
 ssh root@$DROPLET_IP bash -s < bootstrap/init.sh
 ssh root@$DROPLET_IP bash -s < bootstrap/certificates.sh
+ssh root@$DROPLET_IP bash -s < bootstrap/certificates-cronjob.sh
 ssh root@$DROPLET_IP bash -s < bootstrap/pages.sh
 ssh root@$DROPLET_IP bash -s < bootstrap/services.sh
 ssh root@$DROPLET_IP bash -s < bootstrap/iptables.sh
