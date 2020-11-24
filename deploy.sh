@@ -15,7 +15,7 @@ fi
 
 ssh root@$DROPLET_IP bash -s < bootstrap/init.sh
 ssh root@$DROPLET_IP bash -s < bootstrap/certificates.sh
-ssh root@$DROPLET_IP bash -s < bootstrap/certificates-cronjob.sh
+# ssh root@$DROPLET_IP bash -s < bootstrap/certificates-cronjob.sh
 ssh root@$DROPLET_IP bash -s < bootstrap/pages.sh
 ssh root@$DROPLET_IP bash -s < bootstrap/services.sh
 ssh root@$DROPLET_IP bash -s < bootstrap/iptables.sh
