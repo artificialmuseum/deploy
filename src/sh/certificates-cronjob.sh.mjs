@@ -1,4 +1,3 @@
-
 import { colors } from '../lib/index.mjs'
 
 export default async args => {

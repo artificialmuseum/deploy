@@ -35,7 +35,6 @@ src/bin.mjs
   },
 }
 
-
 const doIt = async () => {
   const { args } = cli(opts)
 

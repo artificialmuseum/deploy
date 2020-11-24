@@ -52,5 +52,3 @@ if test -f "/.secrets/digitalocean.ini"; then
 fi
 `
 }
-
-

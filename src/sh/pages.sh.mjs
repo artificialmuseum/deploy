@@ -15,7 +15,6 @@ export default async args => {
   ]
 
   const initPages = args.pages.map(page => {
-
     const [pageHost, pageRepository] = page
 
     return `

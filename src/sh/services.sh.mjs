@@ -5,11 +5,7 @@ export default async args => {
 
   const { redirectLog } = args
 
-  const services = [
-    "gps",
-    "grs",
-    "gss",
-  ]
+  const services = ['gps', 'grs', 'gss']
 
   const initServices = services.map(name => {
     return `
