@@ -25,7 +25,7 @@ GIT_USER=thesystemcollective
 PAGE_STATIC=("static.$PAGE_URL" "$GIT_USER/static.thesystem.at")
 PAGE_GLB=("glb.$PAGE_URL" "$GIT_USER/glb.thesystem.at")
 PAGE_MAP=("map.$PAGE_URL" "$GIT_USER/map.thesystem.at")
-PAGE_ROOT=("$PAGE_URL" "$GIT_USER/demo.thesystem.at")
+PAGE_ROOT=("$PAGE_URL" "$GIT_USER/thesystem.at")
 
 PAGE_ARRAY=(
   PAGE_STATIC[@]
