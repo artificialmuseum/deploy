@@ -13,7 +13,6 @@ printf "\033[1;33minstall iptables-persistent\033[0m"
 
 apt-get -y install iptables-persistent >> /var/log/grundstein/install.log 2>&1
 
-
 printf " - \033[0;32mdone\033[0m\n\n"
 
 
@@ -82,7 +81,7 @@ printf " - \033[0;32mdone\033[0m\n\n"
 
 ############################################################
 
-printf "\033[1;33msave config\033[0m"
+printf "\033[1;33msave iptables rules config\033[0m"
 
 # save
 iptables-save > /etc/iptables/rules.v4
