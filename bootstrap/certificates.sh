@@ -4,6 +4,8 @@ set -euf -o pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 
+PAGE_URL="8aces.org"
+
 printf "\033[1;33mletsencrypt\033[0m setup.\n\n"
 
 ############################################################
@@ -33,9 +35,9 @@ if test -f "/.secrets/digitalocean.ini"; then
     --dns-digitalocean-credentials /.secrets/digitalocean.ini \
     --dns-digitalocean-propagation-seconds 10 \
     --agree-tos \
-    --cert-name wiznwit.com \
+    --cert-name "$PAGE_URL" \
     --email grundstein@jaeh.at \
-    -d *.wiznwit.com,wiznwit.com
+    -d "*.$PAGE_URL,$PAGE_URL"
     # -d *.thesystem.at,thesystem.at
 
   printf "certificate generation - \033[0;32mdone\033[0m\n\n"

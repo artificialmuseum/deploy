@@ -4,6 +4,8 @@ set -euf -o pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 
+PAGE_URL="8aces.org"
+
 printf "\033[1;33mgrundstein\033[0m static page setup.\n\n"
 
 ############################################################
@@ -20,10 +22,10 @@ printf " - \033[0;32mdone\033[0m\n\n"
 
 GIT_USER=thesystemcollective
 
-PAGE_STATIC=("static.wiznwit.com" "$GIT_USER/static.thesystem.at")
-PAGE_GLB=("glb.wiznwit.com" "$GIT_USER/glb.thesystem.at")
-PAGE_MAP=("map.wiznwit.com" "$GIT_USER/map.thesystem.at")
-PAGE_ROOT=("wiznwit.com" "$GIT_USER/demo.thesystem.at")
+PAGE_STATIC=("static.$PAGE_URL" "$GIT_USER/static.thesystem.at")
+PAGE_GLB=("glb.$PAGE_URL" "$GIT_USER/glb.thesystem.at")
+PAGE_MAP=("map.$PAGE_URL" "$GIT_USER/map.thesystem.at")
+PAGE_ROOT=("$PAGE_URL" "$GIT_USER/demo.thesystem.at")
 
 PAGE_ARRAY=(
   PAGE_STATIC[@]
