@@ -11,6 +11,8 @@ import { colors } from './lib/index.mjs'
 export const run = async args => {
   const cwd = process.cwd()
 
+  await fs.mkdirp(path.join(cwd, 'bootstrap'))
+
   const { YELLOW, NC } = colors
 
   const prefix = `
