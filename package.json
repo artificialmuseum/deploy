@@ -1,24 +1,21 @@
 {
-  "name": "deploy.thesystem.at",
+  "name": "deploy.artificialmuseum",
   "version": "0.0.1-alpha.0",
   "author": "TheSystemCollective",
-  "homepage": "https://deploy.thesystem.at",
+  "homepage": "https://deploy.artificialmuseum.com",
   "license": "AGPL-3.0",
-  "description": "### WIP. NOT IN PRODUCTION, TESTED AND/OR BENCHMARKED YET! install this package to get started with grundstein. npm i -g grundstein",
+  "description": "artificialmuseum.com deployment pipeline",
   "main": "src/index.mjs",
   "private": true,
   "engines": {
-    "node": ">=14.14.0"
+    "node": ">=14.14.5"
   },
   "engineStrict": true,
   "scripts": {
-    "start": "src/bin.mjs --url 8aces.org",
+    "start": "src/bin.mjs",
     "test": "t",
     "format": "f -w",
     "calls": "calls"
-  },
-  "bin": {
-    "grundstein": "src/bin.mjs"
   },
   "files": [
     "src",
@@ -26,22 +23,24 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/grundstein/legung.git"
+    "url": "git+https://github.com/artificialmuseum/deploy.git"
   },
   "bugs": {
-    "url": "https://github.com/grundstein/legung/issues"
+    "url": "https://github.com/artificialmuseum/deploy/issues"
   },
   "dependencies": {
     "@grundstein/commons": "github:grundstein/commons"
   },
   "devDependencies": {
-    "@magic/format": "0.0.17",
-    "@magic/test": "0.1.56"
+    "@magic/format": "0.0.21",
+    "@magic/test": "0.1.60"
   },
   "keywords": [
     "grundstein",
     "legung",
-    "server"
+    "server",
+    "deploy",
+    "artificialmuseum"
   ],
   "contributors": [
     {
