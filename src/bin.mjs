@@ -13,15 +13,15 @@ const opts = {
     ['--ip'],
   ],
   default: {
-    '--url': 'thesystem.at',
+    '--url': 'artificialmuseum.com',
     '--install-log': '/var/log/grundstein/install.log',
-    '--git-user': 'thesystemcollective',
-    '--ip': '157.245.23.135',
+    '--git-user': 'artificialmuseum',
+    '--ip': '174.138.103.124',
   },
   single: ['--url', '--install-log', '--git-user', '--ip'],
   help: {
-    name: 'thesystem.at',
-    header: 'sets up the thesystem.at servers.',
+    name: 'artificialmuseum deploy script',
+    header: 'sets up the artificialmuseum.com servers.',
     options: {
       '--url': 'which root hostname to use',
       '--install-log': 'where on the server logs are kept',
@@ -49,6 +49,15 @@ const doIt = async () => {
     log('Aborting.')
     process.exit(0)
   }
+
+  // hardcoded for now
+  args.pages = [
+    [`static.${args.url}`, `${args.gitUser}/static.artificialmuseum.com`],
+    [`glb.${args.url}`, `${args.gitUser}/glb.artificialmuseum.com`],
+    [`map.${args.url}`, `${args.gitUser}/map.artificialmuseum.com`],
+    [`staging.${args.url}`, `${args.gitUser}/staging.artificialmuseum.com`],
+    [args.url, `${args.gitUser}/artificialmuseum.com`],
+  ]
 
   args.redirectLog = `>> ${args.installLog} 2>&1`
 

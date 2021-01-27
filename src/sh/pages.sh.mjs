@@ -8,10 +8,11 @@ export default async args => {
   const proxyFile = '/home/grundstein/proxies'
 
   args.pages = [
-    [`static.${args.url}`, `${args.gitUser}/static.thesystem.at`],
-    [`glb.${args.url}`, `${args.gitUser}/glb.thesystem.at`],
-    [`map.${args.url}`, `${args.gitUser}/map.thesystem.at`],
-    [args.url, `${args.gitUser}/thesystem.at`],
+    [`static.${args.url}`, `${args.gitUser}/static.artificialmuseum.com`],
+    [`glb.${args.url}`, `${args.gitUser}/glb.artificialmuseum.com`],
+    [`map.${args.url}`, `${args.gitUser}/map.artificialmuseum.com`],
+    [`staging.${args.url}`, `${args.gitUser}/staging.artificialmuseum.com`],
+    [args.url, `${args.gitUser}/artificialmuseum.com`],
   ]
 
   const initPages = args.pages.map(page => {
