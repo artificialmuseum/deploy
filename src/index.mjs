@@ -42,10 +42,11 @@ export DEBIAN_FRONTEND=noninteractive
     iptables,
   ].join('')
 
+  //   const exec = `
+  // ssh root@${args.ip} bash -s < bootstrap/init.sh
+  // `.trim()
+
   const outputFile = path.join(cwd, 'bootstrap', 'remote.sh')
-  const exec = `
-ssh root@${args.ip} bash -s < bootstrap/init.sh
-`.trim()
 
   await fs.writeFile(outputFile, result)
 
