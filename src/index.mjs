@@ -26,6 +26,7 @@ export DEBIAN_FRONTEND=noninteractive
 `.trim()
 
   const init = await sh.init(args)
+  const env = await sh.env(args)
   const certificates = await sh.certificates(args)
   // const certificateCronjob = await sh.certificateCronjob(args)
   const pages = await sh.pages(args)
@@ -35,6 +36,7 @@ export DEBIAN_FRONTEND=noninteractive
   const result = [
     prefix,
     init,
+    env,
     certificates,
     // certificateCronjob,
     pages,
