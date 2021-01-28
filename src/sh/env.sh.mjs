@@ -16,11 +16,11 @@ export default async args => {
   
   ############################################################
   
-  printf "${YELLOW}delete /home/grundstein/environment${NC}"
+  printf "${YELLOW}delete /home/grundstein/environment${NC}\n"
   
   rm -f /home/grundstein/environment
  
-  printf "${YELLOW}write /home/grundstein/environment${NC}"
+  printf "${YELLOW}write /home/grundstein/environment${NC}\n"
   
   echo '${envVars}' >> /home/grundstein/environment
  
