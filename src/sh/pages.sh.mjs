@@ -3,17 +3,7 @@ import { colors } from '../lib/index.mjs'
 export default async args => {
   const { GREEN, RED, YELLOW, NC } = colors
 
-  console.log({ args })
-
   const proxyFile = '/home/grundstein/proxies'
-
-  args.pages = [
-    [`static.${args.url}`, `${args.gitUser}/static.artificialmuseum.com`],
-    [`glb.${args.url}`, `${args.gitUser}/glb.artificialmuseum.com`],
-    [`map.${args.url}`, `${args.gitUser}/map.artificialmuseum.com`],
-    [`staging.${args.url}`, `${args.gitUser}/staging.artificialmuseum.com`],
-    [args.url, `${args.gitUser}/artificialmuseum.com`],
-  ]
 
   const initPages = args.pages.map(page => {
     const [pageHost, pageRepository] = page
