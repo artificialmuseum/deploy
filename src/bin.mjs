@@ -16,7 +16,7 @@ const opts = {
     '--url': 'artificialmuseum.com',
     '--install-log': '/var/log/grundstein/install.log',
     '--git-user': 'artificialmuseum',
-    '--ip': '174.138.103.124',
+    '--ip': '188.166.200.97',
   },
   single: ['--url', '--install-log', '--git-user', '--ip'],
   help: {
