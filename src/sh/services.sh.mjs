@@ -12,17 +12,17 @@ export default async args => {
 printf "${YELLOW}@grundstein/${name}${NC} install"
 
 if [ ! -d "/home/grundstein/services/${name}" ] ; then
-  git clone --depth 1 git://github.com/grundstein/${name} /home/grundstein/services/${name} ${args.redirectLog}
+  git clone --depth 1 git://github.com/grundstein/${name} /home/grundstein/services/${name} ${redirectLog}
 else
   cd "/home/grundstein/services/${name}"
-  git pull origin master ${args.redirectLog}
+  git pull origin master ${redirectLog}
 fi
 
 cd /home/grundstein/services/${name}
 
-npm install --production ${args.redirectLog}
+npm install --production ${redirectLog}
 
-npm link ${args.redirectLog}
+npm link ${redirectLog}
 
 cd /
 
@@ -48,7 +48,6 @@ printf " - ${GREEN}done${NC}\\n\\n"
 printf "${YELLOW}grundstein${NC} service setup.\\n\\n"
 
 ############################################################
-
 
 printf "${YELLOW}create services directory${NC}"
 
