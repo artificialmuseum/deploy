@@ -52,11 +52,11 @@ const doIt = async () => {
 
   // hardcoded for now
   args.pages = [
-    [`static.${args.url}`, `${args.gitUser}/static.artificialmuseum.com`],
-    [`glb.${args.url}`, `${args.gitUser}/glb.artificialmuseum.com`],
-    [`map.${args.url}`, `${args.gitUser}/map.artificialmuseum.com`],
-    [`staging.${args.url}`, `${args.gitUser}/staging.artificialmuseum.com`],
-    [args.url, `${args.gitUser}/artificialmuseum.com`],
+    [`static.${args.url}`, `${args.gitUser}/static`],
+    [`glb.${args.url}`, `${args.gitUser}/glb`],
+    [`map.${args.url}`, `${args.gitUser}/map`],
+    [`staging.${args.url}`, `${args.gitUser}/staging`],
+    [args.url, `${args.gitUser}/${args.url}`],
   ]
 
   args.redirectLog = `>> ${args.installLog} 2>&1`
