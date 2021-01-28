@@ -61,6 +61,17 @@ const doIt = async () => {
 
   args.redirectLog = `>> ${args.installLog} 2>&1`
 
+  args.GSS = {
+    CORS_ORIGIN: `${args.url} staging.${args.url}`,
+    DIR: '/var/www/html',
+    HOST: '0.0.0.0',
+    PORT: 2350,
+    CERT_DIR: '/home/grundstein/ca',
+    PROXY_FILE: '/home/grundstein/proxies',
+    CORS_ORIGIN: '*',
+    CORS_HEADERS: 'Origin, X-Requested-With, Content-Type, Accept',
+  }
+
   await run(args)
 }
 
