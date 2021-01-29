@@ -8,7 +8,7 @@ import sh from './sh/index.mjs'
 
 import { colors } from './lib/index.mjs'
 
-export const run = async args => {
+export const run = async ({ args, commands }) => {
   const cwd = process.cwd()
 
   await fs.mkdirp(path.join(cwd, 'bootstrap'))
@@ -35,14 +35,14 @@ export DEBIAN_FRONTEND=noninteractive
 
   const result = [
     prefix,
-    init,
-    env,
-    certificates,
+    commands.init && init,
+    commands.init && env,
+    commands.certificates && certificates,
     // certificateCronjob,
-    pages,
-    services,
-    iptables,
-  ].join('')
+    commands.pages && pages,
+    commands.services && services,
+    commands.iptables && iptables,
+  ].filter(a => a).join('')
 
   //   const exec = `
   // ssh root@${args.ip} bash -s < bootstrap/init.sh
