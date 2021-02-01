@@ -44,7 +44,9 @@ sudo su
     commands.pages && pages,
     commands.services && services,
     commands.iptables && iptables,
-  ].filter(a => a).join('')
+  ]
+    .filter(a => a)
+    .join('')
 
   //   const exec = `
   // ssh ${SSH_USER_NAME}@${args.ip} bash -s < bootstrap/init.sh

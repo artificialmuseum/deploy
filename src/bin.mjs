@@ -18,27 +18,19 @@ const opts = {
     '--git-user': 'artificialmuseum',
     '--ip': '188.166.200.97',
   },
-  commands: [
-    'all',
-    'init',
-    'update',
-    'certificates',
-    'pages',
-    'services',
-    'iptables'
-  ],
+  commands: ['all', 'init', 'update', 'certificates', 'pages', 'services', 'iptables'],
   single: ['--url', '--install-log', '--git-user', '--ip'],
   help: {
     name: 'artificialmuseum deploy script',
     header: 'sets up the artificialmuseum.com servers.',
     commands: {
-      'all': 'run all tasks (bootstrap the full server)',
-      'init': 'bootstrap server',
-      'certificates': 'refresh letsencrypt certificates',
-      'pages': 'git pull pages',
-      'services': 'restart services',
-      'iptables': 'rebuild firewall rules',
-      'update': 'get newest version of all pages via git'
+      all: 'run all tasks (bootstrap the full server)',
+      init: 'bootstrap server',
+      certificates: 'refresh letsencrypt certificates',
+      pages: 'git pull pages',
+      services: 'restart services',
+      iptables: 'rebuild firewall rules',
+      update: 'get newest version of all pages via git',
     },
     options: {
       '--url': 'which root hostname to use',
@@ -56,7 +48,7 @@ src/bin.mjs
 const doIt = async () => {
   const res = cli(opts)
 
-  const { args ,commands} = res
+  const { args, commands } = res
 
   log.warn('SERVER INSTALL', 'This will force (re?)installation on your production server!')
 
@@ -92,7 +84,7 @@ const doIt = async () => {
     CORS_HEADERS: 'Origin, X-Requested-With, Content-Type, Accept',
   }
 
-  await run({ args, commands } )
+  await run({ args, commands })
 }
 
 doIt()

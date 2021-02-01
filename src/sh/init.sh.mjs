@@ -8,7 +8,6 @@ export default async args => {
   return `
 printf "${YELLOW}grundstein${NC} init.\\n\\n"
 
-
 ############################################################
 
 
