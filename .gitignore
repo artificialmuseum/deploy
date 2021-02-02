@@ -6,3 +6,4 @@ coverage
 bootstrap
 .secrets/*
 !.secrets/.gitkeep
+deploy.sh
