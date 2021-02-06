@@ -1,7 +1,7 @@
 import { colors } from '../lib/index.mjs'
 
 export default async args => {
-  const { YELLOW, GREEN } = colors
+  const { YELLOW, GREEN, NC } = colors
   const { SSH_USER_NAME } = process.env
 
   if (!SSH_USER_NAME) {
@@ -12,8 +12,8 @@ export default async args => {
   return `
 printf "${YELLOW}GRUNDSTEIN${NC} - removing secret file"
 
-ssh -t ${SSH_USER_NAME}@${args.ip} sudo rm -f /.secrets/digitalocean.ini
+ssh -t ${SSH_USER_NAME}@${args.ip} 'sudo rm -f /.secrets/digitalocean.ini'
 
-printf "- ${GREEN}done${NC}\\n\\n"
+printf " - ${GREEN}done${NC}\\n\\n"
 `
 }
