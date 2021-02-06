@@ -5,6 +5,7 @@ import certificateCronjob from './certificates-cronjob.sh.mjs'
 import pages from './pages.sh.mjs'
 import services from './services.sh.mjs'
 import iptables from './iptables.sh.mjs'
+import exit from './exit.sh.mjs'
 
 export default {
   init,
@@ -14,4 +15,5 @@ export default {
   pages,
   services,
   iptables,
+  exit,
 }

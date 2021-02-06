@@ -34,6 +34,7 @@ sudo su
   const pages = await sh.pages(args)
   const services = await sh.services(args)
   const iptables = await sh.iptables(args)
+  const exit = await sh.exit(args)
 
   const result = [
     prefix,
@@ -44,6 +45,7 @@ sudo su
     commands.pages && pages,
     commands.services && services,
     commands.iptables && iptables,
+    exit,
   ]
     .filter(a => a)
     .join('')
