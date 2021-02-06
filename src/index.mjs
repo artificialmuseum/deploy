@@ -41,7 +41,7 @@ sudo su
     commands.init && init,
     commands.init && env,
     commands.certificates && certificates,
-    // certificateCronjob,
+    // commands.certificiates && certificateCronjob,
     commands.pages && pages,
     commands.services && services,
     commands.iptables && iptables,
