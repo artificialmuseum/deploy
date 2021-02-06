@@ -70,7 +70,7 @@ sudo su
 
 set -euf -o pipefail
 
-printf "${YELLOW}GRUNDSTEIN${NC} - pushing to production.\n\n"
+printf "${YELLOW}GRUNDSTEIN${NC} - pushing to production.\\n\\n"
 
 if test -f ".secrets/digitalocean.ini"; then
   ssh ${SSH_USER_NAME}@${args.ip} 'mkdir -p /.secrets'
