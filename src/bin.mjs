@@ -18,7 +18,7 @@ const opts = {
     '--git-user': 'artificialmuseum',
     '--ip': '188.166.200.97',
   },
-  commands: ['all', 'init', 'update', 'certificates', 'pages', 'services', 'iptables'],
+  commands: ['all', 'init', 'certificates', 'pages', 'services', 'iptables'],
   single: ['--url', '--install-log', '--git-user', '--ip'],
   help: {
     name: 'artificialmuseum deploy script',
@@ -30,7 +30,6 @@ const opts = {
       pages: 'git pull pages',
       services: 'restart services',
       iptables: 'rebuild firewall rules',
-      update: 'get newest version of all pages via git',
     },
     options: {
       '--url': 'which root hostname to use',
