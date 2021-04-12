@@ -67,6 +67,7 @@ const doIt = async () => {
     [`glb.${args.url}`, `${args.gitUser}/glb`],
     [`map.${args.url}`, `${args.gitUser}/map`],
     [`ios.${args.url}`, `${args.gitUser}/ios`],
+    [`docs.${args.url}`, `${args.gitUser}/docs`],
     [`staging.${args.url}`, `${args.gitUser}/staging`],
     [args.url, `${args.gitUser}/${args.url}`],
   ]
